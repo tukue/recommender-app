@@ -9,7 +9,7 @@ API Documentation : Swagger/OpenAPI
 Testing : Jest
 Deployment : AWS Infrastructure 
 
-Prerequisites
+Prerequisites:
 Node.js (v14 or higher)
 npm (v6 or higher)
 AWS Account with Bedrock access
