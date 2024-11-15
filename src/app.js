@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 var express_1 = require("express");
-var recommendationRoutes_1 = require("./api/routes/recommendationRoutes");
+var recommendationRoutes_1 = require("./api/routes/RecommendationRoutes");
 var Logger_1 = require("./utils/logger/Logger");
 var app = (0, express_1["default"])();
 var logger = new Logger_1.Logger('App');

@@ -1,27 +1,27 @@
+import dotenv from 'dotenv';
+import 'module-alias/register';
 import express from 'express';
-import recommendationRoutes from './api/routes/recommendationRoutes';
-import { Logger } from './utils/logger/Logger';
+import { RecommendationService } from './services/RecommendationService'
+
+// Load environment variables
+dotenv.config();
 
 const app = express();
-const logger = new Logger('App');
+const recommendationService = new RecommendationService();
 
 app.use(express.json());
 
-// Routes
-app.use('/api/v1', recommendationRoutes);
-
-// Error handling middleware
-app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
-    logger.error('Unhandled error:', err);
-    res.status(500).json({
-        error: 'Internal server error',
-        message: err.message
-    });
+app.get('/recommendations/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const recommendations = await recommendationService.getRecommendations(userId);
+    res.json(recommendations);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to get recommendations' });
+  }
 });
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-    logger.info(`Server running on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });
-
-export default app;

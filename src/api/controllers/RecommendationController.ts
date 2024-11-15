@@ -31,7 +31,7 @@ export class RecommendationController {
             this.logger.error('Error in getRecommendations:', error);
             res.status(500).json({
                 error: 'Failed to generate recommendations',
-                details: error.message
+                details: (error as Error).message
             });
         }
     }

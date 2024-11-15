@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { RecommendationController } from '../controllers/RecommendationController';
-import { validateRecommendationRequest } from '../validators/recommendationValidator';
+import { validateRecommendationRequest } from '../validators/recommendationValidator.js';
 
 const router = Router();
 const controller = new RecommendationController();
